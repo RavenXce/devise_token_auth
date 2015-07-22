@@ -32,7 +32,7 @@ module DeviseTokenAuth
           return render json: {
             status: 'error',
             data:   @resource.as_json,
-            errors: [I18n.t("devise_token_auth.passwords.not_allowed_redirect_url", redirect_url: redirect_url)]
+            errors: [I18n.t("devise_token_auth.passwords.redirect_url_not_allowed", redirect_url: redirect_url)]
           }, status: 403
         end
       end
@@ -68,7 +68,7 @@ module DeviseTokenAuth
         if @resource.errors.empty?
           render json: {
             success: true,
-            message: I18n.t("devise_token_auth.passwords.sended", email: email)
+            message: I18n.t("devise_token_auth.passwords.email_sent", email: email)
           }
         else
           errors = @resource.errors

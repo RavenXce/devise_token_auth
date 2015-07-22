@@ -14,11 +14,18 @@ en:
       account_with_uid_destroyed: "Account with uid %{uid} has been destroyed."
       account_to_destroy_not_found: "Unable to locate account for destruction."
       user_not_found: "User not found."
+    confirmations:
+      missing_email: "You must provide an email address."
+      missing_confirm_success_url: "Missing `confirm_success_url` param."
+      redirect_url_not_allowed: "Redirect to %{redirect_url} not allowed."
+      email_sent: "An email has been sent to %{email} containing email verification instructions."
+      already_confirmed: "The account %{email} has already been confirmed."
+      user_not_found: "Unable to find user with email '%{email}'."
     passwords:
       missing_email: "You must provide an email address."
       missing_redirect_url: "Missing redirect url."
-      not_allowed_redirect_url: "Redirect to %{redirect_url} not allowed."
-      sended: "An email has been sent to %{email} containing instructions for resetting your password."
+      redirect_url_not_allowed: "Redirect to %{redirect_url} not allowed."
+      email_sent: "An email has been sent to %{email} containing instructions for resetting your password."
       user_not_found: "Unable to find user with email '%{email}'."
       password_not_required: "This account does not require a password. Sign in using your %{provider} account instead."
       missing_passwords: 'You must fill out the fields labeled "password" and "password confirmation".'

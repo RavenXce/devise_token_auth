@@ -94,7 +94,7 @@ class DeviseTokenAuth::PasswordsControllerTest < ActionController::TestCase
           end
 
           test 'response should contains message' do
-            assert_equal @data["message"], I18n.t("devise_token_auth.passwords.sended", email: @resource.email)
+            assert_equal @data["message"], I18n.t("devise_token_auth.passwords.email_sent", email: @resource.email)
           end
 
           test 'action should send an email' do
@@ -265,7 +265,7 @@ class DeviseTokenAuth::PasswordsControllerTest < ActionController::TestCase
 
           @data = JSON.parse(response.body)
           assert @data["errors"]
-          assert_equal @data["errors"], [I18n.t("devise_token_auth.passwords.not_allowed_redirect_url", redirect_url: @bad_redirect_url)]
+          assert_equal @data["errors"], [I18n.t("devise_token_auth.passwords.redirect_url_not_allowed", redirect_url: @bad_redirect_url)]
         end
       end
 

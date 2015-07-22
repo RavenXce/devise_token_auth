@@ -14,11 +14,18 @@ fr:
       account_with_uid_destroyed: "Le compte avec l'identifiant %{uid} a été supprimé."
       account_to_destroy_not_found: "Impossible de trouver le compte à supprimer."
       user_not_found: "Utilisateur non trouvé."
+    confirmations:
+      missing_email: "Vous devez soumettre un email."
+      missing_redirect_url: "Url de redirection manquante."
+      redirect_url_not_allowed: "Redirection vers %{redirect_url} n'est pas autorisée."
+      email_sent: "Un e-mail a été envoyé à %{email} contenant des instructions de vérification de l' e-mail"
+      already_confirmed: "Le compte %{email} a déjà été confirmé."
+      user_not_found: "L'utilisateur est inconnu ou n'est pas connecté."
     passwords:
       missing_email: "Vous devez soumettre un email."
       missing_redirect_url: "Url de redirection manquante."
-      not_allowed_redirect_url: "Redirection vers %{redirect_url} n'est pas autorisée."
-      sended: "Un email a été envoyé à %{email} avec les instructions pour réinitialiser votre mot de passe."
+      redirect_url_not_allowed: "Redirection vers %{redirect_url} n'est pas autorisée."
+      email_sent: "Un email a été envoyé à %{email} avec les instructions pour réinitialiser votre mot de passe."
       user_not_found: "Impossible de trouver un utilisateur avec cet email: '%{email}'."
       password_not_required: "Ce compte ne demande pas de mot de passe. Connectez vous plutôt en utilisant %{provider}."
       missing_passwords: 'Vous devez remplir les champs "mt de passe" et "confirmation de mot de passe".'

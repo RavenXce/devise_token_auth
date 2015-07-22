@@ -14,11 +14,18 @@ es:
       account_with_uid_destroyed: "La cuenta con el identificador %{uid} se ha eliminado."
       account_to_destroy_not_found: "No se puede encontrar la cuenta a borrar."
       user_not_found: "Usuario no encontrado."
+    confirmations:
+      missing_email: "Debe incluir un correo electrónico."
+      missing_redirect_url: "Falta el Url de redirección."
+      redirect_url_not_allowed: "Redirección hacia %{redirect_url} no esta permitida."
+      email_sent: "Un correo electrónico ha sido enviado a %{ email} que contiene instrucciones de verificación de correo electrónico."
+      already_confirmed: "La cuenta %{email} ya se ha confirmado."
+      user_not_found: "No se pudo encontrar un usuario con este correo electrónico: '%{email}'."
     passwords:
       missing_email: "Debe incluir un correo electrónico."
       missing_redirect_url: "Falta el Url de redirección."
-      not_allowed_redirect_url: "Redirección hacia %{redirect_url} no esta permitida."
-      sended: "Un correo electrónico ha sido enviado a %{email} con las instrucciones para restablecer su contraseña."
+      redirect_url_not_allowed: "Redirección hacia %{redirect_url} no esta permitida."
+      email_sent: "Un correo electrónico ha sido enviado a %{email} con las instrucciones para restablecer su contraseña."
       user_not_found: "No se pudo encontrar un usuario con este correo electrónico: '%{email}'."
       password_not_required: "Esta cuenta no requiere contraseña. Iniciar sesión utilizando %{provider}."
       missing_passwords: 'Debe llenar los campos "contraseña" y "confirmación de contraseña".'
