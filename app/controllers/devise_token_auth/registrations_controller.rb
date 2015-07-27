@@ -28,7 +28,7 @@ module DeviseTokenAuth
           status: 'error',
           data:   @resource.as_json,
           errors: [I18n.t("devise_token_auth.registrations.missing_confirm_success_url")]
-        }, status: 403
+        }, status: 400
       end
 
       # if whitelist is set, validate redirect_url against whitelist
@@ -80,7 +80,7 @@ module DeviseTokenAuth
             status: 'error',
             data:   @resource.as_json,
             errors: @resource.errors.to_hash.merge(full_messages: @resource.errors.full_messages)
-          }, status: 403
+          }, status: 400
         end
       rescue ActiveRecord::RecordNotUnique
         clean_up_passwords @resource
@@ -88,7 +88,7 @@ module DeviseTokenAuth
           status: 'error',
           data:   @resource.as_json,
           errors: [I18n.t("devise_token_auth.registrations.email_already_exists", email: @resource.email)]
-        }, status: 403
+        }, status: 400
       end
     end
 
@@ -104,7 +104,7 @@ module DeviseTokenAuth
           render json: {
             status: 'error',
             errors: @resource.errors.to_hash.merge(full_messages: @resource.errors.full_messages)
-          }, status: 403
+          }, status: 400
         end
       else
         render json: {
