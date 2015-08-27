@@ -162,6 +162,20 @@ The following settings are available for configuration in `config/initializers/d
 | **`default_password_reset_url`** | `nil` | By default this value is expected to be sent by the client so that the API knows where to redirect users after successful password resets. If this param is set, the API will redirect to this value when no value is provided by the cilent. |
 | **`redirect_whitelist`** | `nil` | As an added security measure, you can limit the URLs to which the API will redirect after email token validation (password reset, email confirmation, etc.). This value should be an array containing exact matches to the client URLs to be visited after validation. |
 
+Additionally, you can configure other aspects of devise by manually creating the traditional devise.rb file at `config/initializers/devise.rb`. Here are some examples of what you can do in this file:
+
+~~~ruby
+Devise.setup do |config|
+  # The e-mail address that mail will appear to be sent from
+  # If absent, mail is sent from "please-change-me-at-config-initializers-devise@example.com"
+  config.mailer_sender = "support@myapp.com"
+
+  # If using rails-api, you may want to tell devise to not use ActionDispatch::Flash
+  # middleware b/c rails-api does not include it.
+  # See: http://stackoverflow.com/q/19600905/806956
+  config.navigational_formats = [:json]
+end
+~~~
 
 ## OmniAuth authentication
 
@@ -845,6 +859,13 @@ To run the test suite do the following:
 5. Run `guard`
 
 The last command will open the [guard](https://github.com/guard/guard) test-runner. Guard will re-run each test suite when changes are made to its corresponding files.
+
+To run just one test:
+1. Clone this repo
+2. Run `bundle install`
+3. Run `rake db:migrate`
+4. Run `RAILS_ENV=test rake db:migrate`
+5. See this link for various ways to run a single file or a single test: http://flavio.castelli.name/2010/05/28/rails_execute_single_test/ 
 
 # License
 This project uses the WTFPL
