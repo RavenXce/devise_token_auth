@@ -44,7 +44,12 @@ module DeviseTokenAuth
 
       begin
         # override email confirmation, must be sent manually from ctrl
-        resource_class.skip_callback("create", :after, :send_on_create_confirmation_instructions)
+        begin
+          resource_class.skip_callback("create", :after, :send_on_create_confirmation_instructions)
+        rescue ArgumentError
+          # FIXME: In production, classes are cached and this will fail on the second request
+          # as callback is already removed. Currently just ignoring the raised error as a temporary hack.
+        end
         if @resource.save
           yield @resource if block_given?
 
