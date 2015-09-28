@@ -113,7 +113,11 @@ module DeviseTokenAuth
           config:                       params[:config]
         }))
       else
-        raise ActionController::RoutingError.new('Not Found')
+        redirect_to(DeviseTokenAuth::Url.generate(params[:redirect_url], {
+          account_confirmation_success: false,
+          config:                       params[:config],
+          message:                      "Invalid confirmation token."
+        }))
       end
     end
   end

@@ -48,12 +48,17 @@ class DeviseTokenAuth::ConfirmationsControllerTest < ActionController::TestCase
       end
 
       describe "failure" do
-        test "user should not be confirmed" do
-          assert_raises(ActionController::RoutingError) {
-            xhr :get, :show, {confirmation_token: "bogus"}
-          }
+        before do
+          xhr :get, :show, {confirmation_token: "bogus", redirect_url: @redirect_url}
           @resource = assigns(:resource)
+        end
+
+        test "user should not be confirmed" do
           refute @resource.confirmed?
+        end
+
+        test "should still redirect to redirect url" do
+          assert_redirected_to(/^#{@redirect_url}/)
         end
       end
     end
