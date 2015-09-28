@@ -8,6 +8,8 @@
 
 ## Simple, secure token based authentication for Rails.
 
+[![Join the chat at https://gitter.im/lynndylanhurley/devise_token_auth](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/lynndylanhurley/devise_token_auth?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 This gem provides the following features:
 
 * Seamless integration with both the the venerable [ng-token-auth](https://github.com/lynndylanhurley/ng-token-auth) module for [angular.js](https://github.com/angular/angular.js) and the outstanding [jToker](https://github.com/lynndylanhurley/j-toker) plugin for [jQuery](https://jquery.com/).
@@ -42,6 +44,7 @@ Please read the [issue reporting guidelines](#issue-reporting) before posting is
   * [OmniAuth Authentication](#omniauth-authentication)
   * [OmniAuth Provider Settings](#omniauth-provider-settings)
   * [Email Authentication](#email-authentication)
+  * [Customizing Devise Verbiage](#customizing-devise-verbiage)
   * [Cross Origin Requests (CORS)](#cors)
 * [Usage Continued](#usage-cont)
   * [Mounting Routes](#mounting-routes)
@@ -283,6 +286,21 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = { :address => 'your-dev-host.dev', :port => 1025 }
 end
+~~~
+
+If you wish to send custom e-mails instead of using the default devise templates, you can [do that too](#email-template-overrides).
+
+## Customizing Devise Verbiage
+Devise Token Auth ships with intelligent default wording for everything you need. But that doesn't mean you can't make it more awesome. You can override the [devise defaults](https://github.com/plataformatec/devise/blob/master/config/locales/en.yml) by creating a YAML file at `config/locales/devise.en.yml` and assigning whatever custom values you want. For example, to customize the subject line of your devise e-mails, you could do this:
+
+~~~yaml
+en:
+  devise:
+    mailer:
+      confirmation_instructions:
+        subject: "Please confirm your e-mail address"
+      reset_password_instructions:
+        subject: "Reset password request"
 ~~~
 
 ## CORS
@@ -649,6 +667,45 @@ module Overrides
 end
 ~~~
 
+## Overriding rendering methods
+To customize json rendering, implement the following protected controller methods, for success methods, assume that the @resource object is available:
+
+### Registrations Controller
+* render_create_error_missing_confirm_success_url
+* render_create_error_redirect_url_not_allowed
+* render_create_success
+* render_create_error
+* render_create_error_email_already_exists
+* render_update_success
+* render_update_error
+* render_update_error_user_not_found
+
+
+### Sessions Controller
+* render_new_error
+* render_create_success
+* render_create_error_not_confirmed
+* render_create_error_bad_credentials
+* render_destroy_success
+* render_destroy_error
+
+
+### Passwords Controller
+* render_create_error_missing_email
+* render_create_error_missing_redirect_url
+* render_create_error_redirect_url_not_allowed
+* render_create_success
+* render_create_error
+* render_update_error_unauthorized
+* render_update_error_password_not_required
+* render_update_error_missing_password
+* render_update_success
+* render_update_error
+
+### Token Validations Controller
+* render_validate_token_success
+* render_validate_token_error
+
 ##### Example: all :controller options with default settings:
 
 ~~~ruby
@@ -695,7 +752,7 @@ This will create two new files:
 * `app/views/devise/mailer/reset_password_instructions.html.erb`
 * `app/views/devise/mailer/confirmation_instructions.html.erb`
 
-These files may be edited to suit your taste.
+These files may be edited to suit your taste. You can customize the e-mail subjects like [this](#customizing-devise-verbiage).
 
 **Note:** if you choose to modify these templates, do not modify the `link_to` blocks unless you absolutely know what you are doing.
 
@@ -865,7 +922,7 @@ To run just one test:
 2. Run `bundle install`
 3. Run `rake db:migrate`
 4. Run `RAILS_ENV=test rake db:migrate`
-5. See this link for various ways to run a single file or a single test: http://flavio.castelli.name/2010/05/28/rails_execute_single_test/ 
+5. See this link for various ways to run a single file or a single test: http://flavio.castelli.name/2010/05/28/rails_execute_single_test/
 
 # License
 This project uses the WTFPL

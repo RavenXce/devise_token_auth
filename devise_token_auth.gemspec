@@ -7,9 +7,9 @@ require "devise_token_auth/version"
 Gem::Specification.new do |s|
   s.name        = "devise_token_auth"
   s.version     = DeviseTokenAuth::VERSION
-  s.authors     = ["Lynn Hurley"]
-  s.email       = ["lynn.dylan.hurley@gmail.com"]
-  s.homepage    = "http://github.com/lynndylanhurley/devise_token_auth"
+  s.authors     = ["Lynn Hurley", "Ivan Poon"]
+  s.email       = ["ivan@nubela.co"]
+  s.homepage    = "http://github.com/RavenXce/devise_token_auth"
   s.summary     = "Token based authentication for rails. Uses Devise + OmniAuth."
   s.description = "For use with client side single page apps such as the venerable https://github.com/lynndylanhurley/ng-token-auth."
   s.license     = "WTFPL"
@@ -18,7 +18,7 @@ Gem::Specification.new do |s|
   s.test_files = Dir["test/**/*"]
 
   s.add_dependency "rails", ">= 4.2"
-  s.add_dependency "devise", "3.5.1"
+  s.add_dependency "devise", "3.5.2"
 
   s.add_development_dependency "sqlite3", "~> 1.3"
   s.add_development_dependency 'pg'

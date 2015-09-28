@@ -14,7 +14,7 @@ class DeviseTokenAuth::PasswordsControllerTest < ActionController::TestCase
         @redirect_url = 'http://ng-token-auth.dev'
       end
 
-      describe 'not email should return 401' do
+      describe 'not email should return 400' do
         before do
           @auth_headers = @resource.create_new_auth_token
           @new_password = Faker::Internet.password
@@ -26,14 +26,14 @@ class DeviseTokenAuth::PasswordsControllerTest < ActionController::TestCase
         end
 
         test 'response should fail' do
-          assert_equal 401, response.status
+          assert_equal 400, response.status
         end
         test 'error message should be returned' do
           assert @data["errors"]
           assert_equal @data["errors"], [I18n.t("devise_token_auth.passwords.missing_email")]
         end
       end
-      describe 'not redirect_url should return 401' do
+      describe 'not redirect_url should return 400' do
         before do
           @auth_headers = @resource.create_new_auth_token
           @new_password = Faker::Internet.password
@@ -45,7 +45,7 @@ class DeviseTokenAuth::PasswordsControllerTest < ActionController::TestCase
         end
 
         test 'response should fail' do
-          assert_equal 401, response.status
+          assert_equal 400, response.status
         end
         test 'error message should be returned' do
           assert @data["errors"]
@@ -255,7 +255,7 @@ class DeviseTokenAuth::PasswordsControllerTest < ActionController::TestCase
             redirect_url: @bad_redirect_url
           }
 
-          assert_equal 403, response.status
+          assert_equal 400, response.status
         end
         test "request to non-whitelisted redirect should return error message" do
           xhr :post, :create, {

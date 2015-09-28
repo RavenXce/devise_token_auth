@@ -131,7 +131,7 @@ class DeviseTokenAuth::RegistrationsControllerTest < ActionDispatch::Integration
         }
         @data = JSON.parse(response.body)
 
-        assert_equal 403, response.status
+        assert_equal 400, response.status
         assert @data["errors"]
         assert_equal @data["errors"], [I18n.t("devise_token_auth.registrations.redirect_url_not_allowed", redirect_url: @bad_redirect_url)]
       end
