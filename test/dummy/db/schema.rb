@@ -15,11 +15,12 @@ ActiveRecord::Schema.define(version: 20160103235141) do
 
   create_table "evil_users", force: :cascade do |t|
     t.string   "email"
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "encrypted_password",     default: "",    null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
+    t.boolean  "allow_password_change",  default: false, null: false
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",          default: 0,     null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -32,7 +33,7 @@ ActiveRecord::Schema.define(version: 20160103235141) do
     t.string   "nickname"
     t.string   "image"
     t.string   "provider"
-    t.string   "uid",                    default: "", null: false
+    t.string   "uid",                    default: "",    null: false
     t.text     "tokens"
     t.string   "favorite_color"
     t.datetime "created_at"
@@ -46,12 +47,13 @@ ActiveRecord::Schema.define(version: 20160103235141) do
 
   create_table "mangs", force: :cascade do |t|
     t.string   "email"
-    t.string   "encrypted_password",          default: "", null: false
+    t.string   "encrypted_password",          default: "",    null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.string   "reset_password_redirect_url"
+    t.boolean  "allow_password_change",       default: false, null: false
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",               default: 0,  null: false
+    t.integer  "sign_in_count",               default: 0,     null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -65,7 +67,7 @@ ActiveRecord::Schema.define(version: 20160103235141) do
     t.string   "nickname"
     t.string   "image"
     t.string   "provider"
-    t.string   "uid",                         default: "", null: false
+    t.string   "uid",                         default: "",    null: false
     t.text     "tokens"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -78,13 +80,14 @@ ActiveRecord::Schema.define(version: 20160103235141) do
   add_index "mangs", ["uid", "provider"], name: "index_mangs_on_uid_and_provider", unique: true
 
   create_table "nice_users", force: :cascade do |t|
-    t.string   "provider",                            null: false
-    t.string   "uid",                    default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "provider",                               null: false
+    t.string   "uid",                    default: "",    null: false
+    t.string   "encrypted_password",     default: "",    null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
+    t.boolean  "allow_password_change",  default: false, null: false
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",          default: 0,     null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -123,13 +126,14 @@ ActiveRecord::Schema.define(version: 20160103235141) do
   add_index "only_email_users", ["uid", "provider"], name: "index_only_email_users_on_uid_and_provider", unique: true
 
   create_table "scoped_users", force: :cascade do |t|
-    t.string   "provider",                            null: false
-    t.string   "uid",                    default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "provider",                               null: false
+    t.string   "uid",                    default: "",    null: false
+    t.string   "encrypted_password",     default: "",    null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
+    t.boolean  "allow_password_change",  default: false, null: false
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",          default: 0,     null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -152,13 +156,14 @@ ActiveRecord::Schema.define(version: 20160103235141) do
   add_index "scoped_users", ["uid", "provider"], name: "index_scoped_users_on_uid_and_provider", unique: true
 
   create_table "unconfirmable_users", force: :cascade do |t|
-    t.string   "provider",                            null: false
-    t.string   "uid",                    default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "provider",                               null: false
+    t.string   "uid",                    default: "",    null: false
+    t.string   "encrypted_password",     default: "",    null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
+    t.boolean  "allow_password_change",  default: false, null: false
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",          default: 0,     null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -177,13 +182,14 @@ ActiveRecord::Schema.define(version: 20160103235141) do
   add_index "unconfirmable_users", ["uid", "provider"], name: "index_unconfirmable_users_on_uid_and_provider", unique: true
 
   create_table "unregisterable_users", force: :cascade do |t|
-    t.string   "provider",                            null: false
-    t.string   "uid",                    default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "provider",                               null: false
+    t.string   "uid",                    default: "",    null: false
+    t.string   "encrypted_password",     default: "",    null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
+    t.boolean  "allow_password_change",  default: false, null: false
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",          default: 0,     null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -207,12 +213,13 @@ ActiveRecord::Schema.define(version: 20160103235141) do
 
   create_table "users", force: :cascade do |t|
     t.string   "email"
-    t.string   "encrypted_password",          default: "", null: false
+    t.string   "encrypted_password",          default: "",    null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.string   "reset_password_redirect_url"
+    t.boolean  "allow_password_change",       default: false, null: false
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",               default: 0,  null: false
+    t.integer  "sign_in_count",               default: 0,     null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -226,7 +233,7 @@ ActiveRecord::Schema.define(version: 20160103235141) do
     t.string   "nickname"
     t.string   "image"
     t.string   "provider"
-    t.string   "uid",                         default: "", null: false
+    t.string   "uid",                         default: "",    null: false
     t.text     "tokens"
     t.datetime "created_at"
     t.datetime "updated_at"
